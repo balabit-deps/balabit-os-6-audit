@@ -1,3 +1,10 @@
+audit (1:2.4.5-1ubuntu2.1) xenial; urgency=medium
+
+  * debian/patches/02-print-loginuid-in-login-report.patch: Display the
+    loginuid when using aureport to display a login report (LP: #1724152)
+
+ -- Tyler Hicks <tyhicks@canonical.com>  Tue, 17 Oct 2017 20:03:34 +0000
+
 audit (1:2.4.5-1ubuntu2) xenial; urgency=medium
 
   * No-change rebuild to drop python3.4 support.

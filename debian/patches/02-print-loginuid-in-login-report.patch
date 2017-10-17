@@ -1,0 +1,31 @@
+From 25097d64344828a80acf681da5c1dacc4ea3c069 Mon Sep 17 00:00:00 2001
+From: Steve Grubb <sgrubb@redhat.com>
+Date: Sun, 7 May 2017 08:48:18 -0700
+Subject: [PATCH] Aureport's login report was corrected to print the loginuid
+
+Bug-Ubuntu: https://launchpad.net/bugs/1724152
+---
+ src/aureport-output.c | 5 +++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+index 4477aaa..68623d5 100644
+--- a/src/aureport-output.c
++++ b/src/aureport-output.c
+@@ -1,6 +1,6 @@
+ /*
+ * aureport-output.c - Print the report
+-* Copyright (c) 2005-06,2008,2014 Red Hat Inc., Durham, North Carolina.
++* Copyright (c) 2005-06,2008,2014,2017 Red Hat Inc., Durham, North Carolina.
+ * All Rights Reserved. 
+ *
+ * This software may be freely redistributed and/or modified under the
+@@ -542,7 +542,8 @@ void print_per_event_item(llist *l)
+ 			// on failed logins, loginuid is not set.
+ 			safe_print_string(((l->s.success == S_FAILED) &&
+ 				l->s.acct) ? l->s.acct :
+-				aulookup_uid(l->s.uid, name, sizeof(name)), 0);
++				aulookup_uid(l->s.loginuid,
++						name, sizeof(name)), 0);
+ 			printf(" %s %s %s %s %lu\n", 
+ 				l->s.hostname, l->s.terminal,
+ 				l->s.exe, aulookup_success(l->s.success),
